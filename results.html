@@ -1,71 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Results Page</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
     <main>
-        <h1>🍹🏄‍♀️ Contest Results 🏄‍♀️🍹</h1>
-        <div>
-            <h2 id="status-message"></h2>
-            <h3 id="sub-message"></h3>
-            <img src="assets/images/aruba.jpg" class="mini-image">
-            <h4 id="small-print"></h4>
-            <h5 id="disclaimer"></h5>
-            <div id="address1"></div>
-            <div id="address2"></div>
-        </div>
+      <h1>🍹🏄‍♀️ Contest Results 🏄‍♀️🍹</h1>
+      <div>
+        <h2 id="status-message"></h2>
+        <h3 id="sub-message"></h3>
+        <img src="assets/images/aruba.jpg" class="mini-image" />
+        <h4 id="small-print"></h4>
+        <h5 id="disclaimer"></h5>
+        <div id="address1"></div>
+        <div id="address2"></div>
+      </div>
     </main>
     <script type="text/javascript">
-        // Grab the URL parameters
-        var urlParams = new URLSearchParams(window.location.search);
+      // Grab the URL parameters
+      var urlParams = new URLSearchParams(window.location.search);
 
-        // Determine whether the person won the contest at random
-        let winner = Math.random() < 0.5 ? true : false
+      // Determine whether the person won the contest at random
+      let winner = Math.random() < 0.5 ? true : false;
 
-        // Gather some of the data from the querystring
-        let name = `${urlParams.get('firstname')} ${urlParams.get('lastname')}`
-        let choice = urlParams.get('location') 
-        let color = urlParams.get('color') 
-        let extras = urlParams.getAll('extras')
-        let email = urlParams.get('email') 
-        let address = urlParams.get('address') 
-        let cityStateZip = `${urlParams.get('city')}, ${urlParams.get('state')} ${urlParams.get('zip')}`
-        let emailMessage = document.createElement('p')
-        
-        // Fill the page with the user's personal information
-        document.getElementById('disclaimer').textContent = `Thank you, ${name}, for entering our once in a lifetime vacation contest!`
-        emailMessage.append(`${winner ? 'As our chosen winner' : 'Whenever we\'d like to send marketing materials to you'}, we will contact you via email at ${email}, and send written correspondence to the following mailbox:`)
-        document.getElementById('disclaimer').append(emailMessage)
-        document.getElementById('address1').textContent = address
-        document.getElementById('address2').textContent = cityStateZip
+      // Gather some of the data from the querystring
+      let name = `${urlParams.get("firstname")} ${urlParams.get("lastname")}`;
+      let choice = urlParams.get("location");
+      let color = urlParams.get("color");
+      let extras = urlParams.getAll("extras");
+      let email = urlParams.get("email");
+      let address = urlParams.get("address");
+      let cityStateZip = `${urlParams.get("city")}, ${urlParams.get(
+        "state"
+      )} ${urlParams.get("zip")}`;
+      let emailMessage = document.createElement("p");
 
-        // Put the image of the chosen vacation destination
-        if (choice == 'Japan') {
-            document.querySelector('.mini-image').src = 'assets/images/japan.jpg'
-        }
-        else if (choice == 'New Zealand') {
-            document.querySelector('.mini-image').src = 'assets/images/new-zealand.jpg'
-        }
-        else if (choice == 'Reykjavik') {
-            document.querySelector('.mini-image').src = 'assets/images/iceland.jpg'
-        }
+      // Fill the page with the user's personal information
+      document.getElementById(
+        "disclaimer"
+      ).textContent = `Thank you, ${name}, for entering our once in a lifetime vacation contest!`;
+      emailMessage.append(
+        `${
+          winner
+            ? "As our chosen winner"
+            : "Whenever we'd like to send marketing materials to you"
+        }, we will contact you via email at ${email}, and send written correspondence to the following mailbox:`
+      );
+      document.getElementById("disclaimer").append(emailMessage);
+      document.getElementById("address1").textContent = address;
+      document.getElementById("address2").textContent = cityStateZip;
 
-        // Change display based on whether they won or not
-        if (winner) {
-            document.getElementById('status-message').textContent = `Congrats, ${name}, YOU WON!`
-            document.getElementById('sub-message').textContent = `PACK YOUR BAGS, YOU'RE GOING TO ${choice.toUpperCase()}!`
-            document.getElementById('status-message').style.color = color || 'crimson'
-            document.getElementById('small-print').textContent = `Extras (${extras.join(', ')}) must be requested upon arrival at your destination`
-        }
-        else {
-            document.getElementById('status-message').textContent = `Sorry, ${name}, You Didn't Win This Time!`
-            document.getElementById('sub-message').textContent = `Maybe you'll get to ${choice} next time!`
-            document.getElementById('small-print').textContent = 'Better luck next time!'
-        }
+      // Put the image of the chosen vacation destination
+      if (choice == "Japan") {
+        document.querySelector(".mini-image").src = "assets/images/japan.jpg";
+      } else if (choice == "New Zealand") {
+        document.querySelector(".mini-image").src =
+          "assets/images/new-zealand.jpg";
+      } else if (choice == "Reykjavik") {
+        document.querySelector(".mini-image").src = "assets/images/iceland.jpg";
+      }
+
+      // Change display based on whether they won or not
+      if (winner) {
+        document.getElementById(
+          "status-message"
+        ).textContent = `Congrats, ${name}, YOU WON!`;
+        document.getElementById(
+          "sub-message"
+        ).textContent = `PACK YOUR BAGS, YOU'RE GOING TO ${choice.toUpperCase()}!`;
+        document.getElementById("status-message").style.color =
+          color || "crimson";
+        document.getElementById(
+          "small-print"
+        ).textContent = `Extras (${extras.join(
+          ", "
+        )}) must be requested upon arrival at your destination`;
+      } else {
+        document.getElementById(
+          "status-message"
+        ).textContent = `Sorry, ${name}, You Didn't Win This Time!`;
+        document.getElementById(
+          "sub-message"
+        ).textContent = `Maybe you'll get to ${choice} next time!`;
+        document.getElementById("small-print").textContent =
+          "Better luck next time!";
+      }
     </script>
-</body>
+  </body>
 </html>
