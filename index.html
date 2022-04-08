@@ -38,7 +38,7 @@
             maxlength="35"
           />
           <label for="age">Your Age</label>
-          <input type="number" name="age" id="age" />
+          <input type="number" name="age" id="age" min="21" max="120" />
           <h5>Must be 21 or older to enter contest</h5>
         </div>
         <!-- TODO: Make fieldset and legend -->
@@ -103,7 +103,12 @@
             <option value="WY">Wyoming</option>
           </select>
           <label for="zip">Zip</label>
-          <input type="number" name="zip" />
+          <input
+            type="text"
+            name="zip"
+            pattern="[0-9]{5}"
+            title="5-Digit US Zip Code"
+          />
         </fieldset>
         <fieldset>
           <legend>Your Preferences</legend>
